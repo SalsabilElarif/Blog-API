@@ -36,3 +36,23 @@ func (h *UserHandler) RegisterUser(w http.ResponseWriter, r *http.Request) {
 	  w.WriteHeader(http.StatusCreated)
 	  json.NewEncoder(w).Encode(&user)
 }
+
+func (h *UserHandler) Login (w http.ResponseWriter, r *http.Request) {
+	var request models.LoginRequest
+	err := json.NewDecoder(r.Body).Decode(&request)
+	if err != nil {
+		http.Error(w, "invalid request body", http.StatusBadRequest)
+		return
+	}
+
+	token, err := h.Service.LoginUser(request)
+	if err != nil {
+		http.Error(w, "invalid credentials", http.StatusInternalServerError)
+		return
+	}
+
+	// response
+	  w.WriteHeader(http.StatusOK)
+	  json.NewEncoder(w).Encode(token)
+
+}

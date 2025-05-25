@@ -34,3 +34,17 @@ func (s *UserService) RegisterUser(user *models.User) error {
 
 	return nil
 }
+
+func (s *UserService) LoginUser(request models.LoginRequest) (string, error) {
+	user, err := s.Repo.GetUserByEmail(request.Email)
+	if err != nil {
+		return "", err
+	}
+
+	err = utils.ComparePassword(user.Password, request.Password)
+	if err != nil {
+		return "", err
+	}
+
+	return "token-placeholder", nil
+}

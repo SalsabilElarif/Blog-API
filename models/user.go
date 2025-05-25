@@ -9,3 +9,8 @@ type User struct {
 	Password string `json:"password" gorm:"not null"`
 	Role     string `json:"role" gorm:"type:varchar(6);not null"`
 }
+
+type LoginRequest struct {
+	Email    string `json:"email"`
+	Password string `json:"password"`
+}
