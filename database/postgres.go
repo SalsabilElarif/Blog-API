@@ -23,6 +23,8 @@ func ConnectDB() {
 		os.Getenv("DB_PORT"),
 	)
 
+	// log.Println("env...", connStr)
+
 	var err error
 	// open database connection
 	DB, err = gorm.Open(postgres.Open(connStr), &gorm.Config{})

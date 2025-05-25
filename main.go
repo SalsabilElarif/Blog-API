@@ -1,6 +1,7 @@
 package main
 
 import (
+	"blog-api/config"
 	"blog-api/database"
 	"blog-api/handler"
 	"blog-api/repository"
@@ -11,6 +12,9 @@ import (
 )
 
 func main() {
+	// load up variables
+	config.LoadEnv()
+
 	// connect to database
 	database.ConnectDB() 
 
