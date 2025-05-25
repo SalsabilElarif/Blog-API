@@ -1,6 +1,7 @@
 package services
 
 import (
+	"blog-api/middleware"
 	"blog-api/models"
 	"blog-api/repository"
 	"blog-api/utils"
@@ -46,5 +47,10 @@ func (s *UserService) LoginUser(request models.LoginRequest) (string, error) {
 		return "", err
 	}
 
-	return "token-placeholder", nil
+	token, err := middleware.GenerateJWT(user.ID, user.Role)
+	if err != nil {
+		return "", err
+	}
+
+	return token, nil
 }

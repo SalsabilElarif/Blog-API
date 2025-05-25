@@ -9,6 +9,7 @@ func SetupRouter(userHandler *handler.UserHandler) *mux.Router {
 	r := mux.NewRouter()
 
 	r.HandleFunc("/register", userHandler.RegisterUser).Methods("POST")
+	r.HandleFunc("/login", userHandler.Login).Methods("POST")
 
 	return r
 }
