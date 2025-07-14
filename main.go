@@ -24,7 +24,7 @@ func main() {
 
 	// initialise the service
 	userService := &services.UserService{Repo: userRepo}
-	postService := &services.PostService{Repo: postRepo}
+	postService := &services.PostService{Repo: *postRepo}
 
 
 	// initialise the handler
